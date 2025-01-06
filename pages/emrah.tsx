@@ -332,27 +332,54 @@ export default function SnakeGame() {
   return (
     <>
       <Head />
-      <main style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'start',
-        justifyContent: 'start',
-        height: '100vh',
-        fontFamily: 'Arial, sans-serif',
-        width: '100%',
-      }}>
-        <div style={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: '1rem',
-          color: 'white',
-        }}>
-          Emrah Pekşahin</div>
+      <main>
+        <canvas
+          ref={canvasRef}
+          width={canvasWidth + 1}
+          height={canvasHeight + 1}
+        />
+        <section>
+          <div className="score">
+            <p>
+              <FontAwesomeIcon icon={['fas', 'star']} />
+              Score: {score}
+            </p>
+            <p>
+              <FontAwesomeIcon icon={['fas', 'trophy']} />
+              Highscore: {highscore > score ? highscore : score}
+            </p>
+          </div>
+          {!isLost && countDown > 0 ? (
+            <button onClick={startGame}>
+              {countDown === 4 ? 'Start Game' : countDown}
+            </button>
+          ) : (
+            <div className="controls">
+              <p>How to Play?</p>
+              <p>
+                <FontAwesomeIcon icon={['fas', 'arrow-up']} />
+                <FontAwesomeIcon icon={['fas', 'arrow-right']} />
+                <FontAwesomeIcon icon={['fas', 'arrow-down']} />
+                <FontAwesomeIcon icon={['fas', 'arrow-left']} />
+              </p>
+            </div>
+          )}
+        </section>
+        {isLost && (
+          <div className="game-overlay">
+            <p className="large">Game Over</p>
+            <p className="final-score">
+              {newHighscore ? `🎉 New Highscore 🎉` : `You scored: ${score}`}
+            </p>
+            {!running && isLost && (
+              <button onClick={startGame}>
+                {countDown === 4 ? 'Restart Game' : countDown}
+              </button>
+            )}
+          </div>
+        )}
       </main>
-
+      
     </>
   )
 }
