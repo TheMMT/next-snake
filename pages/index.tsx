@@ -330,16 +330,14 @@ export default function SnakeGame() {
   }, [previousVelocity])
 
   return (
-    <>
-      <Head />
+      // <Head />
       <main style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'start',
         justifyContent: 'start',
         height: '100vh',
-        fontFamily: 'Arial, sans-serif',
-        width: '100%',
+        width: '100vw',
       }}>
         <div style={{
           width: '100%',
@@ -349,10 +347,10 @@ export default function SnakeGame() {
           justifyContent: 'center',
           marginBottom: '1rem',
           color: 'white',
+          padding: '10rem 0',
         }}>
           Emrah Pekşahin</div>
       </main>
 
-    </>
   )
 }
